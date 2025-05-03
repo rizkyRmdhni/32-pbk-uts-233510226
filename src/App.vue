@@ -5,20 +5,23 @@ const items = ref([])
 const newItem = ref('')
 
 const addItem = () => {
-  if(newItem.value !== ''){
+  if (newItem.value !== '') {
     items.value.push({
       id: items.value.length + 1,
       text: newItem.value,
       completed: false
     })
     newItem.value = ''
-    console.log(items.value)
   }
 }
 
 const toggle = (item) => {
   item.completed = !item.completed
-  console.log(item)
+}
+
+const remove = (item) => {
+  items.value = items.value.filter(i => i.id !== item.id)
+  console.log(items.value)
 }
 
 </script>
@@ -31,10 +34,9 @@ const toggle = (item) => {
     <li v-for="item in items" :key="item.id">
       <input type="checkbox" :checked="item.completed" @change="toggle(item)">
       {{ item.text }}
+      <button @click="remove(item)">Hapus</button>
     </li>
   </ul>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
