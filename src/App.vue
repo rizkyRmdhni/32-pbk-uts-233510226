@@ -20,6 +20,12 @@ const addItem = () => {
 <template>
   <input type="text" v-model="newItem" @keyup.enter="addItem">
   <button @click="addItem">Tambahkan</button>
+
+  <ul>
+    <li v-for="item in items" :key="item.id">
+      {{ item.text }}
+    </li>
+  </ul>
 </template>
 
 <style scoped>
